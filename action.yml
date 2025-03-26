@@ -3,8 +3,8 @@ description: "A GitHub Action that provides customizable greetings in multiple l
 author: "Itamar Zand"
 
 branding:
-  icon: "message-circle" # Choose from: https://feathericons.com/
-  color: "blue" # Choose from: white, yellow, blue, green, orange, red, purple, gray-dark
+  icon: "message-circle"
+  color: "blue"
 
 inputs:
   name:
