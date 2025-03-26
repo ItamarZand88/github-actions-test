@@ -1,4 +1,4 @@
-name: "Hello World Action"
+name: "multilingual-welcome-action"
 description: "A GitHub Action that provides customizable greetings in multiple languages"
 author: "Itamar Zand"
 
