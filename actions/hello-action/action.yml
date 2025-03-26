@@ -1,15 +1,37 @@
-name: "Hello Action"
-description: "A simple GitHub Action that prints Hello World"
-author: "Your Name"
+name: "Hello World Action"
+description: "A GitHub Action that provides customizable greetings in multiple languages"
+author: "Itamar Zand"
+
+branding:
+  icon: "message-circle" # Choose from: https://feathericons.com/
+  color: "blue" # Choose from: white, yellow, blue, green, orange, red, purple, gray-dark
 
 inputs:
   name:
-    description: "Your name"
+    description: "The name of the person to greet"
     required: false
     default: "World"
+  greeting_type:
+    description: "Type of greeting (e.g., Hello, Hi, Good morning)"
+    required: false
+    default: "Hello"
+  language:
+    description: "Language for the greeting (en, es)"
+    required: false
+    default: "en"
 
 runs:
   using: "composite"
   steps:
-    - run: echo "Hello, ${{ inputs.name }}!"
+    - name: Set greeting
       shell: bash
+      run: |
+        if [[ "${{ inputs.language }}" == "en" ]]; then
+          echo "GREETING=${{ inputs.greeting_type }}, ${{ inputs.name }}!" >> $GITHUB_ENV
+        elif [[ "${{ inputs.language }}" == "es" ]]; then
+          echo "GREETING=¡Hola, ${{ inputs.name }}!" >> $GITHUB_ENV
+        fi
+
+    - name: Print greeting
+      shell: bash
+      run: echo "${{ env.GREETING }}"
